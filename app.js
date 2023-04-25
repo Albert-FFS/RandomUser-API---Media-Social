@@ -1,68 +1,39 @@
-const main = document.querySelector('main');
-function createLabel(tag){
-  const object = document.createElement(tag);
-  return object;
+const main = document.querySelector("main");
+function CallApi(url) {
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const article = document.createElement("article");
+      const templateArticle = `
+        <div class="thumbnail">
+          <img src="${data.results[0].picture.thumbnail}" alt="" />
+        </div>
+        <div class="image">
+          <a href="#">
+            <i class="far fa-window-close"></i>
+          </a>
+          <img src="${data.results[0].picture.large}" alt="" />
+          <div class="nameBox">
+            <h2>${data.results[0].name.first}</h2>
+            <span class="bar"></span>
+            <h2>${data.results[0].name.last}</h2>
+          </div>
+        </div>
+        <div class="info">
+          <h2>${data.results[0].name.first}</h2>
+          <h2>${data.results[0].name.last}</h2>
+          <h3>${data.results[0].location.country}</h3>
+          <h3>${data.results[0].location.state}</h3>
+          <h3>${data.results[0].location.city}</h3>
+          <h3>${data.results[0].phone}</h3>
+          <h3>${data.results[0].email}</h3>
+        </div>
+      `;
+      article.innerHTML = templateArticle;
+      main.appendChild(article);
+    });
 }
-function writeDOM(){
-
-}
-function loadDOM(){
-
-}
-fetch('https://randomuser.me/api/?nat=us')
-.then(response => response.json())
-.then(data =>{
-  // console.log(data.results[0]);
-  const article = document.createElement('article');
-
-  //image modal
-  const imageBox = document.createElement('div');
-  const close = document.createElement('button');
-  const image = document.createElement('img');
-  image.src = data.results[0].picture.large;
-  //nameBox
-  const nameBox = document.createElement('div')
-  nameBox.classList.add("nameBox");
-  const bar = document.createElement('span');
-  bar.classList.add('bar');
-  //thumbnail 
-  const thumbnailBox = document.createElement('div');
-  const thumbnail = document.createElement('img');
-  thumbnail.src = data.results[0].picture.thumbnail;
-
-  //info box
-  const info = document.createElement('div');
-  const Country = document.createElement('h3');
-  Country.innerText = data.results[0].location.country;
-  const State = document.createElement("h3");
-  State.innerText = data.results[0].location.state;
-  const City = document.createElement("h3");
-  City.innerText = data.results[0].location.city;
-  const Phone = document.createElement("h3");
-  Phone.innerText = data.results[0].phone;
-  const Email = document.createElement("h3");
-  Email.innerText = data.results[0].email;
-  //resource 
-  const FirstName = document.createElement('h2');
-  FirstName.innerText = data.results[0].name.first;
-  const LastName = document.createElement('h2');
-  LastName.innerText = data.results[0].name.last;
-
-  //load
-  main.appendChild(article);
-  article.appendChild(imageBox);
-  imageBox.appendChild(close);
-  imageBox.appendChild(image);
-  imageBox.appendChild(nameBox);
-  nameBox.appendChild(FirstName);
-  nameBox.appendChild(bar);
-  nameBox.appendChild(LastName);
-  article.appendChild(thumbnailBox).appendChild(thumbnail);
-  article.appendChild(info).appendChild(FirstName);
-  info.appendChild(LastName);
-  info.appendChild(Country);
-  info.appendChild(State);
-  info.appendChild(City);
-  info.appendChild(Phone);
-  info.appendChild(Email);
-} );
+CallApi("https://randomuser.me/api/?nat=us");
+CallApi("https://randomuser.me/api/?nat=mx");
+CallApi("https://randomuser.me/api/?nat=es");
+CallApi("https://randomuser.me/api/?nat=fr");
