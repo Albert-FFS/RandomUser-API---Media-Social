@@ -1,15 +1,17 @@
 const main = document.querySelector("main");
+let countItems = 0;
 function CallApi(url) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       const article = document.createElement("article");
+      article.classList.add(`Item_${countItems}`);
       const templateArticle = `
         <div class="thumbnail">
-          <img src="${data.results[0].picture.thumbnail}" alt="" />
+          <img src="${data.results[0].picture.thumbnail}" alt="thumbnail" onclick="OpenModalImage('Item_${countItems}')"/>
         </div>
         <div class="image">
-          <a href="#">
+          <a href="#" onclick="CloseModalImage('Item_${countItems}')">
             <i class="far fa-window-close"></i>
           </a>
           <img src="${data.results[0].picture.large}" alt="" />
@@ -31,9 +33,23 @@ function CallApi(url) {
       `;
       article.innerHTML = templateArticle;
       main.appendChild(article);
+      countItems++;
     });
 }
 CallApi("https://randomuser.me/api/?nat=us");
 CallApi("https://randomuser.me/api/?nat=mx");
 CallApi("https://randomuser.me/api/?nat=es");
 CallApi("https://randomuser.me/api/?nat=fr");
+//Todo: Obtener objeto a manipular
+function CloseModalImage(item) {
+  const modal = document.querySelector(`.${item}`);
+  // console.log(modal);
+  modal.children[1].classList.remove('Open');
+}
+function OpenModalImage(item) {
+  const modal = document.querySelector(`.${item}`);
+  // console.log(modal.children[1]);
+  modal.children[1].classList.add('Open');
+}
+//Todo: Manipular objeto
+//Todo: Recrear el Skelethon
