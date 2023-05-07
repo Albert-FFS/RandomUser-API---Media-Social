@@ -19,39 +19,42 @@
     </header>
     <nav>
       <ul>
-        <li>Home</li>
-        <li>Search</li>
-        <li>Contact</li>
-        <li>About Me</li>
-        <li>Log Out</li>
+        <li>
+          <a href="#"><i class="fas fa-home"></i>Home</a>
+        </li>
+        <li>
+          <a href="#" id="Country"><i class="fas fa-globe"></i>Country</a>
+          <ul>
+            <li><a href="#" onclick="ChangeCountryPeople('us')" >United State</a></li>
+            <li><a href="#" onclick="ChangeCountryPeople('mx')" >Mexico</a></li>
+            <li><a href="#" onclick="ChangeCountryPeople('es')" >Spain</a></li>
+            <li><a href="#" onclick="ChangeCountryPeople('ie')" >Ireland</a></li>
+            <li><a href="#" onclick="ChangeCountryPeople('fr')" >France</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-phone-square-alt"></i>Contact</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-id-card-alt"></i>About Me</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-sign-out-alt"></i>Log Out</a>
+        </li>
       </ul>
     </nav>
     <main>
-      <article>
-        <div class="thumbnail">
-          <img src="" alt="" />
-        </div>
-        <div class="image">
-          <a href="#">
-            <i class="far fa-window-close"></i>
-          </a>
-          <img src="" alt="" />
-          <div class="nameBox">
-            <h2>FirstName :</h2>
-            <span class="bar"></span>
-            <h2>Lastname :</h2>
-          </div>
-        </div>
-        <div class="info">
-          <h2>FirstName :</h2>
-          <h2>Lastname :</h2>
-          <h3>Country :</h3>
-          <h3>State :</h3>
-          <h3>City :</h3>
-          <h3>Phone :</h3>
-          <h3>Email :</h3>
-        </div>
-      </article>
     </main>
+    <div id="modal">
+      <a href="#" onclick="CloseModalImage()">
+        <i class="far fa-window-close" aria-hidden="true"></i>
+      </a>
+      <img id="ModalImage" src="" alt="">
+      <div id="NameBox">
+        <h2 id="ModalFirstName"></h2>
+        <span id="Bar"></span>
+        <h2 id="ModalLastName"></h2>
+      </div>
+    </div>
   </body>
 </html>

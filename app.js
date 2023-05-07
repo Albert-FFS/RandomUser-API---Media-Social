@@ -1,25 +1,22 @@
 const main = document.querySelector("main");
-let countItems = 0;
-function CallApi(url) {
+const modal = document.getElementById("modal");
+const ModalImage = document.getElementById("ModalImage");
+const ModalFirstName = document.getElementById("ModalFirstName");
+const ModalLastName = document.getElementById("ModalLastName");
+let nat = "mx";
+function CallApi(url, iteraction) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       const article = document.createElement("article");
-      article.classList.add(`Item_${countItems}`);
+      article.classList.add(`Item_${iteraction}`);
       const templateArticle = `
         <div class="thumbnail">
-          <img src="${data.results[0].picture.thumbnail}" alt="thumbnail" onclick="OpenModalImage('Item_${countItems}')"/>
-        </div>
-        <div class="image">
-          <a href="#" onclick="CloseModalImage('Item_${countItems}')">
-            <i class="far fa-window-close"></i>
-          </a>
-          <img src="${data.results[0].picture.large}" alt="" />
-          <div class="nameBox">
-            <h2>${data.results[0].name.first}</h2>
-            <span class="bar"></span>
-            <h2>${data.results[0].name.last}</h2>
-          </div>
+          <img src="${data.results[0].picture.thumbnail}" alt="thumbnail" onclick="OpenModalImage({
+            url:'${data.results[0].picture.large}',
+            Firstname:'${data.results[0].name.first}',
+            Lastname:'${data.results[0].name.last}'
+          })"/>
         </div>
         <div class="info">
           <h2>${data.results[0].name.first}</h2>
@@ -33,23 +30,30 @@ function CallApi(url) {
       `;
       article.innerHTML = templateArticle;
       main.appendChild(article);
-      countItems++;
     });
 }
-CallApi("https://randomuser.me/api/?nat=us");
-CallApi("https://randomuser.me/api/?nat=mx");
-CallApi("https://randomuser.me/api/?nat=es");
-CallApi("https://randomuser.me/api/?nat=fr");
-//Todo: Obtener objeto a manipular
+function StarResponse() {
+  let Url = "https://randomuser.me/api/?";
+  for (let a = 0; a < 10; a++) {
+    CallApi(`${Url}nat=${nat}`, a);
+  }
+}
+StarResponse();
+// CallApi("https://randomuser.me/api/?nat=us");
+// CallApi("https://randomuser.me/api/?nat=mx");
+// CallApi("https://randomuser.me/api/?nat=es");
+// CallApi("https://randomuser.me/api/?nat=fr");
 function CloseModalImage(item) {
-  const modal = document.querySelector(`.${item}`);
-  // console.log(modal);
-  modal.children[1].classList.remove('Open');
+  modal.classList.remove("Open");
 }
 function OpenModalImage(item) {
-  const modal = document.querySelector(`.${item}`);
-  // console.log(modal.children[1]);
-  modal.children[1].classList.add('Open');
+  modal.classList.add("Open");
+  ModalImage.src = item.url;
+  ModalFirstName.innerHTML = item.Firstname;
+  ModalLastName.innerHTML = item.Lastname;
 }
-//Todo: Manipular objeto
+function ChangeCountryPeople(Country) {
+  nat = Country;
+  StarResponse();
+}
 //Todo: Recrear el Skelethon

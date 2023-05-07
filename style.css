@@ -4,12 +4,15 @@
   box-sizing: border-box;
 }
 body {
+  position: relative;
   background: radial-gradient(
     rgba(131, 156, 163, 0.5),
     rgba(19, 156, 194, 0.5)
   );
-  width: 100vw;
+  box-sizing: border-box;
   overflow-x: hidden;
+  width: 100vw;
+  padding: 10px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,6 +38,8 @@ nav {
   z-index: 1;
   background: rgba(19, 156, 194, 0.5);
   width: 100vw;
+  position: sticky;
+  top: 0;
 }
 nav ul {
   display: flex;
@@ -47,20 +52,52 @@ nav ul li {
   border: 1px solid rgba(19, 156, 194, 0.9);
   font-size: 1em;
   font-weight: 800;
-}
-main{
-  z-index: 1;
-  overflow-x: scroll;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
   display: flex;
-  flex-direction: row;
-  padding: 10px 30px;
-  align-items: center;
-  justify-content: space-evenly;
+  justify-content: stretch;
+}
+nav ul li a{
+  color: #fff;
+  text-decoration: none;
+}
+nav ul li a i{
+  padding: 5px;
+  font-size: 1.2em;
+}
+nav ul li #Country{
   
 }
+nav ul li ul{
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: -10em;
+  left: 0;
+  background: #f0f;
+}
+nav ul li ul li{
+  width: 8em;
+  height: 2em;
+  padding: 0.2em;
+  z-index: 12;
+}
+nav ul li ul li a{
+  z-index: 10;
+  padding: 5px 8px ;
+  background: #000;
+}
+main{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
+}
 main article{
+  z-index: 2;
   width: 300px;
   height: 400px;
   margin: 1em;
@@ -74,15 +111,17 @@ main article{
   -moz-transition: all ease 0.5s;
   -ms-transition: all ease 0.5s;
   -o-transition: all ease 0.5s;
+  background: rgba(255, 255, 255, 0.9);
 }
 main article .thumbnail{
-  z-index: 3;
+  z-index: 2 ;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 main article .thumbnail img{
+  z-index: 2;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -92,12 +131,12 @@ main article .thumbnail img{
   -o-border-radius: 50%;
   cursor: pointer;
 }
-main article .image{
+#modal{
   display: none;
 }
-main article .image.Open{
+#modal.Open{
   position: fixed;
-  z-index: 10;
+  z-index: 10 !important;
   width: 100vw;
   height: 100vh;
   left: 0;
@@ -113,22 +152,22 @@ main article .image.Open{
   -ms-transition: all ease .5s;
   -o-transition: all ease .5s;
 }
-main article .image a{
-  z-index: 11;
-  font-size: 2em;
+#modal a{
+  z-index: 10;
+  font-size: 3em;
   padding: 5px;
   text-decoration: none;
   color: #fff;
 }
-main article .image a:hover{
+#modal a:hover{
   color: red;
 }
-main article .image img{
+#modal #ModalImage{
   z-index: 10;
   object-fit: contain;
   width: 300px;
 }
-main article .image .nameBox{
+#modal #NameBox{
   z-index: 10;
   width: 100%;
   display: flex;
@@ -138,18 +177,18 @@ main article .image .nameBox{
   color: #fff;
   padding: 10px;
 }
-main article .image .nameBox:hover h2{
+#modal #NameBox:hover h2{
   letter-spacing: 2px;
   font-weight: 600;
 }
-main article .image .nameBox h2{
+#modal #NameBox h2{
   z-index: 10;
   font-weight: 900;
   letter-spacing: 8px;
   transition: all ease .5s;
   margin: 5px auto;
 }
-main article .image .nameBox .bar{
+#modal #NameBox #Bar{
   z-index: 10;
   background: transparent;
   margin: 5px auto;
@@ -161,7 +200,7 @@ main article .image .nameBox .bar{
   -ms-transition: all ease 0.5s;
   -o-transition: all ease 0.5s;
 }
-main article .image .nameBox:hover .bar{
+#modal #NameBox:hover #Bar{
   background: #fff;
   width: 300px;
 }
