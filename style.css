@@ -22,7 +22,7 @@ body {
 header {
   z-index: 1;
   padding: 10px 30px;
-  height: 300px;
+  height: 250px;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@ header h1 {
   letter-spacing: 0.25em;
 }
 nav {
-  z-index: 1;
+  z-index: 10;
   background: rgba(19, 156, 194, 0.5);
   width: 100vw;
   position: sticky;
@@ -48,46 +48,66 @@ nav ul {
   list-style: none;
 }
 nav ul li {
-  padding: 8px 12px 8px 16px;
-  border: 1px solid rgba(19, 156, 194, 0.9);
   font-size: 1em;
   font-weight: 800;
   position: relative;
   display: flex;
   justify-content: stretch;
 }
-nav ul li a{
+nav ul li:hover{
+  background-color: rgba(193, 235, 247, 0.99);
+}
+nav ul li a {
+  padding: 8px 12px 8px 16px;
   color: #fff;
   text-decoration: none;
 }
-nav ul li a i{
+nav ul li:hover a {
+  color: #444;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  -ms-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+}
+nav ul li a i {
   padding: 5px;
   font-size: 1.2em;
 }
-nav ul li #Country{
-  
-}
-nav ul li ul{
-  z-index: 10;
+nav ul #Country:hover ul {
   display: flex;
+}
+nav ul #Country .dropdownMenu {
+  display: none;
   flex-direction: column;
   position: absolute;
-  bottom: -10em;
+  bottom: -9.5em;
   left: 0;
-  background: #f0f;
 }
-nav ul li ul li{
+.dropdownMenu li a {
   width: 8em;
   height: 2em;
   padding: 0.2em;
-  z-index: 12;
-}
-nav ul li ul li a{
   z-index: 10;
-  padding: 5px 8px ;
-  background: #000;
+  padding: 5px 8px;
+  background: #ddd;
+  color: #444;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  -ms-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
 }
-main{
+.dropdownMenu li a:hover {
+  color: #ddd;
+  background: #444;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  -ms-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
+}
+main {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -96,14 +116,14 @@ main{
   align-items: center;
   overflow-x: scroll;
 }
-main article{
+main article {
   z-index: 2;
   width: 300px;
   height: 400px;
   margin: 1em;
   display: flex;
   flex-direction: column;
-  padding:12px 8px 18px;
+  padding: 12px 8px 18px;
   border: rgba(19, 156, 194, 0.9) 1px solid;
   align-items: center;
   transition: all ease 0.5s;
@@ -111,16 +131,16 @@ main article{
   -moz-transition: all ease 0.5s;
   -ms-transition: all ease 0.5s;
   -o-transition: all ease 0.5s;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.45);
 }
-main article .thumbnail{
-  z-index: 2 ;
+main article .thumbnail {
+  z-index: 2;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-main article .thumbnail img{
+main article .thumbnail img {
   z-index: 2;
   width: 100px;
   height: 100px;
@@ -131,10 +151,10 @@ main article .thumbnail img{
   -o-border-radius: 50%;
   cursor: pointer;
 }
-#modal{
+#modal {
   display: none;
 }
-#modal.Open{
+#modal.Open {
   position: fixed;
   z-index: 10 !important;
   width: 100vw;
@@ -146,28 +166,28 @@ main article .thumbnail img{
   justify-content: center;
   background: rgba(0, 0, 0, 0.9);
   flex-direction: column;
-  transition: all ease .5s;
-  -webkit-transition: all ease .5s;
-  -moz-transition: all ease .5s;
-  -ms-transition: all ease .5s;
-  -o-transition: all ease .5s;
+  transition: all ease 0.5s;
+  -webkit-transition: all ease 0.5s;
+  -moz-transition: all ease 0.5s;
+  -ms-transition: all ease 0.5s;
+  -o-transition: all ease 0.5s;
 }
-#modal a{
+#modal a {
   z-index: 10;
   font-size: 3em;
   padding: 5px;
   text-decoration: none;
   color: #fff;
 }
-#modal a:hover{
+#modal a:hover {
   color: red;
 }
-#modal #ModalImage{
+#modal #ModalImage {
   z-index: 10;
   object-fit: contain;
   width: 300px;
 }
-#modal #NameBox{
+#modal #NameBox {
   z-index: 10;
   width: 100%;
   display: flex;
@@ -177,18 +197,18 @@ main article .thumbnail img{
   color: #fff;
   padding: 10px;
 }
-#modal #NameBox:hover h2{
+#modal #NameBox:hover h2 {
   letter-spacing: 2px;
   font-weight: 600;
 }
-#modal #NameBox h2{
+#modal #NameBox h2 {
   z-index: 10;
   font-weight: 900;
   letter-spacing: 8px;
-  transition: all ease .5s;
+  transition: all ease 0.5s;
   margin: 5px auto;
 }
-#modal #NameBox #Bar{
+#modal #NameBox #Bar {
   z-index: 10;
   background: transparent;
   margin: 5px auto;
@@ -200,11 +220,11 @@ main article .thumbnail img{
   -ms-transition: all ease 0.5s;
   -o-transition: all ease 0.5s;
 }
-#modal #NameBox:hover #Bar{
+#modal #NameBox:hover #Bar {
   background: #fff;
   width: 300px;
 }
-main article .info{
+main article .info {
   z-index: 4;
   width: 100%;
   display: flex;
@@ -213,7 +233,7 @@ main article .info{
   justify-content: left;
   padding: 20px 10px 5px;
 }
-main article .info h2{
+main article .info h2 {
   z-index: 5;
   font-weight: 900;
   letter-spacing: 3px;
@@ -221,8 +241,13 @@ main article .info h2{
   text-align: left;
   font-size: 1.5em;
 }
-main article .info h3{
+main article .info h3 {
   z-index: 5;
   font-size: 1em;
   font-weight: 500;
+}
+footer{
+  width: 100vw;
+  height: 400px;
+  background: rgba(19, 156, 194, 0.9);
 }

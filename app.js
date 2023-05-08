@@ -33,16 +33,13 @@ function CallApi(url, iteraction) {
     });
 }
 function StarResponse() {
+  main.innerHTML = '';
   let Url = "https://randomuser.me/api/?";
   for (let a = 0; a < 10; a++) {
     CallApi(`${Url}nat=${nat}`, a);
   }
 }
 StarResponse();
-// CallApi("https://randomuser.me/api/?nat=us");
-// CallApi("https://randomuser.me/api/?nat=mx");
-// CallApi("https://randomuser.me/api/?nat=es");
-// CallApi("https://randomuser.me/api/?nat=fr");
 function CloseModalImage(item) {
   modal.classList.remove("Open");
 }
